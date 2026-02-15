@@ -25,9 +25,11 @@ greetButton.addEventListener('click', function() {
             greetButton.classList.remove('success-pulse');
         }, 600);
         
+        // Trigger confetti
+        createConfetti();
+        
     } else {
         greeting.textContent = 'Hello';
-        
         // Shake animation for empty input
         nameInput.classList.add('shake');
         setTimeout(() => {
@@ -50,7 +52,7 @@ nameInput.addEventListener('keypress', function(event) {
 const boxes = document.querySelectorAll('.box');
 
 boxes.forEach(box => {
-    box.addEventListener('click', function() {
+    box.addEventListener('click', function(event) {
         const color = this.getAttribute('data-color');
         
         // Check if box is already colored (toggle functionality)
@@ -85,19 +87,6 @@ boxes.forEach(box => {
             
             // Create ripple effect
             createRipple(this, event);
-        }
-    });
-    
-    // Add hover sound effect (visual feedback)
-    box.addEventListener('mouseenter', function() {
-        if (!this.classList.contains('colored')) {
-            this.style.transform = 'scale(1.05) translateY(-5px)';
-        }
-    });
-    
-    box.addEventListener('mouseleave', function() {
-        if (!this.classList.contains('colored')) {
-            this.style.transform = '';
         }
     });
 });
@@ -154,31 +143,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Add floating particles animation
-function createFloatingParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.classList.add('particles-container');
-    document.body.appendChild(particlesContainer);
-    
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Initialize particles on page load
-window.addEventListener('load', function() {
-    createFloatingParticles();
-    
-    // Add entrance animation to container
-    const container = document.querySelector('.container');
-    container.classList.add('entrance-animation');
-});
-
 // Add confetti effect when greeting is successful
 function createConfetti() {
     const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
@@ -200,19 +164,28 @@ function createConfetti() {
     }
 }
 
-// Trigger confetti on successful greeting (enhanced version)
-let confettiTriggered = false;
-greetButton.addEventListener('click', function() {
-    const name = nameInput.value.trim();
-    if (name && !confettiTriggered) {
-        setTimeout(() => {
-            createConfetti();
-        }, 200);
-        confettiTriggered = true;
-        
-        // Reset confetti trigger after 5 seconds
-        setTimeout(() => {
-            confettiTriggered = false;
-        }, 5000);
+// Add floating particles animation
+function createFloatingParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.classList.add('particles-container');
+    document.body.appendChild(particlesContainer);
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
     }
+}
+
+// Initialize on page load
+window.addEventListener('load', function() {
+    // Create floating particles
+    createFloatingParticles();
+    
+    // Add entrance animation to container
+    const container = document.querySelector('.container');
+    container.classList.add('entrance-animation');
 });
