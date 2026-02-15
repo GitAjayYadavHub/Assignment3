@@ -20,20 +20,30 @@ nameInput.addEventListener('keypress', function(event) {
     }
 });
 
-// Color box functionality
+// Color box functionality with toggle
 const boxes = document.querySelectorAll('.box');
 
 boxes.forEach(box => {
     box.addEventListener('click', function() {
         const color = this.getAttribute('data-color');
-        this.style.backgroundColor = color;
-        this.classList.add('colored');
         
-        // Adjust text color for yellow box for better readability
-        if (color === 'yellow') {
+        // Check if the box is already colored
+        if (this.classList.contains('colored')) {
+            // Reset to default
+            this.style.backgroundColor = '#f8f9fa';
             this.style.color = '#333';
+            this.classList.remove('colored');
         } else {
-            this.style.color = 'white';
+            // Apply the color
+            this.style.backgroundColor = color;
+            this.classList.add('colored');
+            
+            // Adjust text color for yellow box for better readability
+            if (color === 'yellow') {
+                this.style.color = '#333';
+            } else {
+                this.style.color = 'white';
+            }
         }
     });
 });
