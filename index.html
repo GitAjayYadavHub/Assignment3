@@ -7,20 +7,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1 id="greeting">Hello</h1>
-    </header>
+    <div class="container">
+        <header>
+            <div class="emoji-wave">👋</div>
+            <h1 id="greeting">Hello</h1>
+            <p class="subtitle">Welcome to the Interactive Page</p>
+        </header>
 
-    <div class="boxes-container">
-        <div class="box" data-color="red">Red</div>
-        <div class="box" data-color="blue">Blue</div>
-        <div class="box" data-color="green">Green</div>
-        <div class="box" data-color="yellow">Yellow</div>
-    </div>
+        <div class="greeting-section">
+            <label for="nameInput" class="input-label">
+                <span class="label-icon">✨</span>
+                What's your name?
+            </label>
+            <div class="input-group">
+                <input type="text" id="nameInput" placeholder="Enter your name..." autocomplete="off">
+                <button id="greetButton">
+                    <span class="button-text">Greet Me</span>
+                    <span class="button-icon">🎉</span>
+                </button>
+            </div>
+        </div>
 
-    <div class="input-section">
-        <input type="text" id="nameInput" placeholder="Aakash">
-        <button id="greetButton">Greet</button>
+        <div class="boxes-section">
+            <h2>
+                <span class="section-icon">🎨</span>
+                Click the boxes to change their colors!
+            </h2>
+            <p class="instruction">Click again to toggle back</p>
+            <div class="boxes-container">
+                <div class="box" data-color="red">
+                    <span class="box-icon">🔴</span>
+                    <span class="box-text">red</span>
+                </div>
+                <div class="box" data-color="blue">
+                    <span class="box-icon">🔵</span>
+                    <span class="box-text">blue</span>
+                </div>
+                <div class="box" data-color="green">
+                    <span class="box-icon">🟢</span>
+                    <span class="box-text">green</span>
+                </div>
+                <div class="box" data-color="yellow">
+                    <span class="box-icon">🟡</span>
+                    <span class="box-text">yellow</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <p>Made with <span class="heart">❤️</span> for interactive learning</p>
+        </footer>
     </div>
 
     <script src="body.js"></script>
